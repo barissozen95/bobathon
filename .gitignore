@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.class
+out/
+!scenarios/*/out/
+.DS_Store
+
+# secrets and local config
+.env
+.env.*
+*.pem
+*.key
+.bob/mcp.json
+
+# facilitator-only material (answer keys, run-of-show, package builder)
+facilitator/
+scenarios/*/reference/

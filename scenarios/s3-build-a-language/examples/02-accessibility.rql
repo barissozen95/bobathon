@@ -1,0 +1,7 @@
+# Step-free vs. shortest
+let lab = "SCI-110"
+route lab to "ENG-B204"
+route lab to "ENG-B204" avoid stairs
+
+# A coffee-and-books detour
+route "Main Gate" to "Sports Center" via "Çınar Café", "Central Library"

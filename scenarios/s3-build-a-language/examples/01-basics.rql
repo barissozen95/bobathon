@@ -1,0 +1,5 @@
+# Getting to my first lecture
+print "Morning route"
+let home = "North Dormitory"
+route home to "ENG-B204"
+find "cafe"

@@ -1,0 +1,12 @@
+{
+  "note": "Synthetic crowd reports for 2027-03-01 (a Monday). Use now=2027-03-01T12:30 to see them.",
+  "reports": [
+    {"place": "caf", "level": 4, "at": "2027-03-01T12:25:00"},
+    {"place": "caf", "level": 3, "at": "2027-03-01T12:15:00"},
+    {"place": "caf", "level": 4, "at": "2027-03-01T12:05:00"},
+    {"place": "lib", "level": 2, "at": "2027-03-01T12:20:00"},
+    {"place": "lib", "level": 1, "at": "2027-03-01T11:40:00"},
+    {"place": "sport", "level": 1, "at": "2027-03-01T12:10:00"},
+    {"place": "eng-a", "level": 3, "at": "2027-03-01T12:28:00"}
+  ]
+}

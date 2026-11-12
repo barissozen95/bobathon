@@ -1,0 +1,105 @@
+/* CampusRoute, styled with IBM Carbon design tokens (White theme; Gray 100 in dark mode).
+   No external fonts: the server's CSP is default-src 'self', so IBM Plex is used only if installed. */
+:root {
+  color-scheme: light dark;
+  --background: #ffffff;
+  --layer: #f4f4f4;
+  --layer-hover: #e8e8e8;
+  --field: #f4f4f4;
+  --text-primary: #161616;
+  --text-secondary: #525252;
+  --border-subtle: #e0e0e0;
+  --border-strong: #8d8d8d;
+  --interactive: #0f62fe;
+  --interactive-hover: #0353e9;
+  --link: #0f62fe;
+  --focus: #0f62fe;
+  --on-color: #ffffff;
+  --support-error: #da1e28;
+  --support-success: #198038;
+  --header-bg: #161616;
+  --header-text: #f4f4f4;
+  --header-muted: #c6c6c6;
+  --map-node: #ffffff;
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #161616;
+    --layer: #262626;
+    --layer-hover: #333333;
+    --field: #262626;
+    --text-primary: #f4f4f4;
+    --text-secondary: #c6c6c6;
+    --border-subtle: #393939;
+    --border-strong: #6f6f6f;
+    --interactive: #4589ff;
+    --interactive-hover: #6ea6ff;
+    --link: #78a9ff;
+    --focus: #ffffff;
+    --on-color: #161616;
+    --support-error: #fa4d56;
+    --support-success: #42be65;
+    --header-bg: #000000;
+    --map-node: #262626;
+  }
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font: 400 16px/1.5 var(--font-sans); color: var(--text-primary); background: var(--background); }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.skip { position: absolute; left: 16px; top: -100px; z-index: 10; background: var(--interactive); color: var(--on-color); padding: 8px 16px; text-decoration: none; }
+.skip:focus { top: 8px; }
+
+/* UI shell header */
+header { background: var(--header-bg); color: var(--header-text); min-height: 48px; padding: 0 16px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid #393939; }
+header h1 { margin: 0; font-size: 14px; font-weight: 600; letter-spacing: .16px; }
+.tag { margin: 0; font-size: 14px; color: var(--header-muted); }
+
+main { display: grid; gap: 16px; padding: 24px 16px; grid-template-columns: minmax(280px, 1fr) minmax(320px, 2fr); max-width: 1584px; margin: 0 auto; }
+.map-panel { grid-row: span 3; grid-column: 2; }
+@media (max-width: 800px) { main { grid-template-columns: 1fr; } .map-panel { grid-column: auto; grid-row: auto; } }
+
+/* tiles */
+.panel { background: var(--layer); padding: 16px; }
+h2 { margin: 0 0 16px; font-size: 20px; line-height: 28px; font-weight: 400; }
+h2 small { font-size: 14px; color: var(--text-secondary); font-weight: 400; }
+h3 { font-size: 16px; line-height: 24px; font-weight: 600; margin: 24px 0 8px; }
+
+/* form fields */
+label { display: block; margin-bottom: 16px; font-size: 12px; line-height: 16px; letter-spacing: .32px; color: var(--text-secondary); }
+input[type=search], input:not([type]), input[list], input[type=datetime-local] {
+  display: block; width: 100%; height: 40px; margin-top: 8px; padding: 0 16px; background: var(--background);
+  border: 0; border-bottom: 1px solid var(--border-strong); border-radius: 0; font: 400 14px var(--font-sans); color: var(--text-primary); }
+input::placeholder { color: var(--text-secondary); opacity: .8; }
+.check { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--text-primary); }
+.check input { width: 16px; height: 16px; margin: 0; accent-color: var(--interactive); }
+
+/* buttons */
+button { height: 48px; padding: 0 64px 0 16px; border: 0; border-radius: 0; background: var(--interactive); color: var(--on-color); font: 400 14px var(--font-sans); cursor: pointer; text-align: left; }
+button:hover { background: var(--interactive-hover); }
+button.link { height: auto; padding: 4px 0; background: none; color: var(--link); text-align: left; text-decoration: underline; text-underline-offset: 3px; }
+button.link:hover { background: none; color: var(--interactive-hover); }
+
+.summary { font-weight: 600; } .muted { color: var(--text-secondary); }
+ul { padding-left: 20px; margin: 8px 0; } ol { padding-left: 24px; }
+li { margin-bottom: 4px; }
+
+/* map */
+#map { width: 100%; height: auto; display: block; background: var(--background); }
+.edge { stroke: var(--border-subtle); stroke-width: 5; stroke-linecap: round; }
+.edge.covered { stroke: var(--support-success); stroke-opacity: .5; }
+.edge.stairs { stroke: var(--support-error); stroke-dasharray: 2 9; stroke-opacity: .85; }
+.edge.route { stroke: var(--interactive); stroke-width: 9; stroke-opacity: 1; stroke-dasharray: none; }
+.place circle { fill: var(--map-node); stroke: var(--text-primary); stroke-width: 2; }
+.place.junction circle { fill: var(--border-strong); stroke: none; }
+.place.on circle { fill: var(--interactive); stroke: var(--interactive); }
+.place text { font-size: 13px; fill: var(--text-primary); paint-order: stroke; stroke: var(--background); stroke-width: 4px; }
+.legend { font-size: 12px; line-height: 16px; color: var(--text-secondary); margin: 12px 0 0; }
+.sw { display: inline-block; width: 18px; height: 4px; margin: 0 4px 2px 12px; vertical-align: middle; }
+.sw.route { background: var(--interactive); } .sw.stairs { background: var(--support-error); } .sw.covered { background: var(--support-success); }
+.crowd.busy, .crowd.packed { color: var(--support-error); font-weight: 600; }
+
+footer { padding: 16px; color: var(--text-secondary); font-size: 12px; line-height: 16px; border-top: 1px solid var(--border-subtle); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

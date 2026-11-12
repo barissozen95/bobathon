@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusRoute · IBM Bob</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header>
+    <h1>CampusRoute</h1>
+    <p class="tag">Find rooms. Walk the shortest way. Never be late.</p>
+  </header>
+  <main id="main">
+    <section class="panel" aria-labelledby="route-h">
+      <h2 id="route-h">Route</h2>
+      <form id="route-form">
+        <label>From <input id="from" list="place-list" value="Main Gate" autocomplete="off" required></label>
+        <label>To <input id="to" list="place-list" value="ENG-B204" autocomplete="off" required></label>
+        <datalist id="place-list"></datalist>
+        <label class="check"><input type="checkbox" id="avoid-stairs"> Avoid stairs</label>
+        <button type="submit">Find route</button>
+      </form>
+      <p id="route-summary" class="summary" aria-live="polite"></p>
+      <ol id="route-steps"></ol>
+    </section>
+
+    <section class="panel map-panel" aria-label="Campus map">
+      <svg id="map" viewBox="0 0 940 700" role="img" aria-label="Campus map"></svg>
+      <p class="legend"><span class="sw route"></span> route <span class="sw stairs"></span> stairs <span class="sw covered"></span> covered</p>
+    </section>
+
+    <section class="panel" aria-labelledby="search-h">
+      <h2 id="search-h">Search</h2>
+      <input id="q" type="search" aria-label="Search places" placeholder="Try: library, B204, cafe" autocomplete="off">
+      <ul id="results"></ul>
+    </section>
+
+    <section class="panel" aria-labelledby="next-h">
+      <h2 id="next-h">Next class <small>(sample schedule)</small></h2>
+      <label>Time <input id="now" type="datetime-local" value="2027-03-01T12:30"></label>
+      <div id="next"></div>
+      <h3>Crowd right now</h3>
+      <ul id="crowd"></ul>
+    </section>
+  </main>
+  <footer>Synthetic campus data for the IBM Bob · Agentic AI in Action workshop. Not a real university.</footer>
+  <script src="/app.js"></script>
+</body>
+</html>

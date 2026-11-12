@@ -1,0 +1,4 @@
+let gym = "Sports Center"
+route "Main Gate" to gym
+route "Main Gate" to library   # 'library' was never defined
+print "never printed"

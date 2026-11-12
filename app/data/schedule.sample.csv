@@ -1,0 +1,9 @@
+# Sample schedule for a synthetic 2nd-year computer engineering student.
+day,start,end,course,room
+Mon,09:00,10:50,CS201 Data Structures,ENG-B204
+Mon,13:00,14:50,MATH203 Probability,SCI-202
+Tue,10:00,11:50,CS203 Computer Organization,ENG-A101
+Wed,09:00,10:50,CS201 Data Structures,ENG-B204
+Wed,15:00,16:50,CS205 Lab,ENG-A214
+Thu,11:00,12:50,PHYS102 Physics II,SCI-110
+Fri,14:00,15:50,HUM101 Academic Writing,INO-AUD

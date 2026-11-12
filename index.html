@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IBM Bob · Agentic AI in Action · Your Agentic Friend</title>
+<link rel="icon" type="image/png" href="assets/bob-icon.png">
+<meta name="description" content="IBM Bob, Agentic AI in Action, Your Agentic Friend: the participant guide and seven hands-on scenarios for the IBM Bob workshop.">
+<link rel="canonical" href="https://barissozen95.github.io/bobathon/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IBM Bob · Agentic AI in Action">
+<meta property="og:title" content="IBM Bob · Agentic AI in Action · Your Agentic Friend">
+<meta property="og:description" content="Hands-on workshop for university students: seven scenarios, one realistic codebase, and IBM Bob as your agentic friend.">
+<meta property="og:url" content="https://barissozen95.github.io/bobathon/">
+<meta property="og:image" content="https://barissozen95.github.io/bobathon/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="IBM Bob, a smiling robot in a blue hard hat, with the title Agentic AI in Action">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IBM Bob · Agentic AI in Action · Your Agentic Friend">
+<meta name="twitter:description" content="Hands-on workshop for university students: seven scenarios, one realistic codebase, and IBM Bob as your agentic friend.">
+<meta name="twitter:image" content="https://barissozen95.github.io/bobathon/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap">
+<style>
+/* IBM Bob · Agentic AI in Action guide. Styled with IBM Carbon design tokens (White theme, Gray 100 in dark mode),
+   IBM Plex, 2x grid spacing scale, square corners, 48px UI shell header, 2px blue focus ring. */
+:root {
+  color-scheme: light dark;
+  /* Carbon White theme */
+  --background: #ffffff;
+  --layer: #f4f4f4;
+  --layer-hover: #e8e8e8;
+  --text-primary: #161616;
+  --text-secondary: #525252;
+  --border-subtle: #e0e0e0;
+  --border-strong: #8d8d8d;
+  --interactive: #0f62fe;
+  --interactive-hover: #0353e9;
+  --link: #0f62fe;
+  --focus: #0f62fe;
+  --on-color: #ffffff;
+  --support-success: #198038;
+  --support-error: #da1e28;
+  --notification-info: #edf5ff;
+  --notification-warning: #fcf4d6;
+  --notification-error: #fff1f1;
+  --header-bg: #161616;
+  --header-text: #f4f4f4;
+  --header-muted: #c6c6c6;
+  --header-hover: #353535;
+  --code-bg: #f4f4f4;
+  --term-bg: #262626;
+  --term-text: #f4f4f4;
+  --term-muted: #c6c6c6;
+  --term-border: #525252;
+  /* tags (Carbon tag palette) */
+  --tag-blue-bg: #d0e2ff;   --tag-blue-text: #0043ce;
+  --tag-teal-bg: #9ef0f0;   --tag-teal-text: #005d5d;
+  --tag-purple-bg: #e8daff; --tag-purple-text: #6929c4;
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+  --panel-w: 320px;
+  --header-h: 48px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Carbon Gray 100 theme */
+    --background: #161616;
+    --layer: #262626;
+    --layer-hover: #333333;
+    --text-primary: #f4f4f4;
+    --text-secondary: #c6c6c6;
+    --border-subtle: #393939;
+    --border-strong: #6f6f6f;
+    --interactive: #4589ff;
+    --interactive-hover: #6ea6ff;
+    --link: #78a9ff;
+    --focus: #ffffff;
+    --on-color: #161616;
+    --support-success: #42be65;
+    --support-error: #fa4d56;
+    --notification-info: #001d6c;
+    --notification-warning: #3e3500;
+    --notification-error: #520408;
+    --header-bg: #000000;
+    --code-bg: #262626;
+    --term-bg: #0b0b0b;
+    --tag-blue-bg: #002d9c;   --tag-blue-text: #a6c8ff;
+    --tag-teal-bg: #004144;   --tag-teal-text: #3ddbd9;
+    --tag-purple-bg: #491d8b; --tag-purple-text: #d4bbff;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--background); color: var(--text-primary); font: 400 16px/1.5 var(--font-sans); letter-spacing: 0; }
+a { color: var(--link); text-underline-offset: 3px; }
+a:hover { color: var(--interactive-hover); }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible, .pick:has(input:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+strong, b { font-weight: 600; }
+code, kbd, pre { font-family: var(--font-mono); font-size: 0.875em; }
+code { background: var(--code-bg); padding: 2px 6px; }
+kbd { border: 1px solid var(--border-strong); border-bottom-width: 2px; padding: 0 6px; background: var(--background); white-space: nowrap; }
+.skip { position: absolute; left: 16px; top: -100px; z-index: 40; background: var(--interactive); color: var(--on-color); padding: 8px 16px; text-decoration: none; }
+.skip:focus { top: 8px; }
+
+/* UI shell header */
+.bar { position: sticky; top: 0; z-index: 20; min-height: var(--header-h); background: var(--header-bg); color: var(--header-text);
+  padding: 0 max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px; border-bottom: 1px solid var(--term-border); }
+.bar .brand { font-size: 14px; display: flex; align-items: center; gap: 12px; margin-right: auto; min-height: var(--header-h); }
+.bar .brand b { font-weight: 600; letter-spacing: .16px; }
+.bar .brand .sub { color: var(--header-muted); }
+.bar .brand img { display: block; width: 32px; height: 32px; }
+.progress { display: flex; align-items: center; gap: 12px; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--header-muted); }
+.progress .track { width: 120px; height: 4px; background: var(--term-border); }
+.progress .fill { display: block; height: 100%; width: 0; background: #78a9ff; transition: width .11s linear; }
+.timer { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.timer output { font: 400 16px var(--font-mono); font-variant-numeric: tabular-nums; min-width: 4.5ch; color: var(--header-text); }
+.timer output.over { color: #ff8389; }
+.os { display: flex; }
+.bar button { background: transparent; color: var(--header-text); border: 0; height: var(--header-h); padding: 0 16px; font: 400 14px var(--font-sans); cursor: pointer; border-radius: 0; }
+.bar button:hover { background: var(--header-hover); }
+.bar button:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
+.os button[aria-pressed="true"] { box-shadow: inset 0 -3px 0 #78a9ff; }
+@media (max-width: 700px) { .bar .brand .sub { display: none; } .progress .track { width: 64px; } }
+
+/* buttons (content area) */
+button { font: 400 14px/1 var(--font-sans); background: var(--layer); color: var(--text-primary); border: 1px solid transparent; border-bottom-color: var(--border-strong); height: 32px; padding: 0 16px; cursor: pointer; border-radius: 0; }
+button:hover { background: var(--layer-hover); }
+.cta { display: flex; flex-wrap: wrap; gap: 16px; margin: 24px 0 0; }
+.cta a { display: inline-flex; align-items: center; height: 48px; padding: 0 64px 0 16px; background: var(--interactive); color: #fff; text-decoration: none; font-size: 14px; border: 1px solid var(--interactive); }
+.cta a:hover { background: var(--interactive-hover); border-color: var(--interactive-hover); color: #fff; }
+.cta a.ghost { background: transparent; color: var(--link); border-color: var(--interactive); }
+.cta a.ghost:hover { background: var(--layer-hover); color: var(--interactive-hover); }
+@media (prefers-color-scheme: dark) { .cta a { color: #161616; } .cta a:hover { color: #161616; } }
+
+/* layout */
+.layout { display: grid; grid-template-columns: var(--panel-w) minmax(0, 1fr); min-height: calc(100vh - var(--header-h)); }
+.side { background: var(--layer); padding: 32px 0; }
+.side .inner { position: sticky; top: calc(var(--header-h) + 16px); max-height: calc(100vh - var(--header-h) - 32px); overflow-y: auto; padding: 0 16px; }
+.side .label { font-size: 20px; line-height: 28px; margin: 0 0 8px; }
+.side p { font-size: 14px; line-height: 20px; color: var(--text-secondary); margin: 0 0 24px; }
+.toc { list-style: none; padding: 0; margin: 0 -16px; font-size: 14px; }
+.toc a { display: flex; justify-content: space-between; gap: 8px; align-items: center; min-height: 32px; padding: 4px 16px 4px 13px; border-left: 3px solid transparent; color: var(--text-secondary); text-decoration: none; }
+.toc a:hover { background: var(--layer-hover); color: var(--text-primary); }
+.toc a.chosen { border-left-color: var(--interactive); color: var(--text-primary); font-weight: 600; }
+.toc .count { font: 400 12px var(--font-mono); font-variant-numeric: tabular-nums; }
+.toc .count.done { color: var(--support-success); }
+.toc .group { margin: 16px 0 4px; padding: 0 16px; font-size: 12px; letter-spacing: .32px; text-transform: uppercase; color: var(--text-secondary); }
+main { padding-block: 48px 96px; padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); min-width: 0; }
+.col { max-width: 832px; }
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .side .inner { position: static; max-height: none; }
+  main { padding-inline: 16px; }
+}
+
+/* hero */
+.intro { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.mascot { flex: none; width: 145px; height: auto; }
+@media (max-width: 640px) { .intro { flex-direction: column-reverse; align-items: flex-start; gap: 16px; } .mascot { width: 88px; } }
+.event { margin: 0 0 16px; font: 400 12px/16px var(--font-mono); letter-spacing: .32px; text-transform: uppercase; color: var(--text-secondary); }
+.hero h1 { font-size: clamp(32px, 5vw, 42px); line-height: 1.19; font-weight: 300; }
+.hero h1 em { font-style: normal; color: var(--link); }
+.hero .sub { font-size: 20px; line-height: 28px; margin: 16px 0 0; max-width: 60ch; color: var(--text-secondary); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin-top: 32px; border-top: 1px solid var(--border-subtle); }
+.facts div { padding: 16px 16px 16px 0; border-bottom: 1px solid var(--border-subtle); }
+.facts b { display: block; font: 300 42px/1.19 var(--font-sans); color: var(--link); font-variant-numeric: tabular-nums; }
+.facts span { font-size: 14px; color: var(--text-secondary); }
+
+/* sections */
+section.part { margin-top: 64px; scroll-margin-top: 64px; }
+.part > header { border-top: 2px solid var(--text-primary); padding-top: 16px; margin-bottom: 24px; display: grid; gap: 8px; }
+.part .kicker { font-size: 12px; letter-spacing: .32px; text-transform: uppercase; color: var(--text-secondary); }
+.part h2 { font-size: 32px; line-height: 1.25; font-weight: 400; }
+.part .lede { font-size: 18px; line-height: 28px; max-width: 65ch; margin: 0; color: var(--text-secondary); }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px; color: var(--text-secondary); }
+.meta b { color: var(--text-primary); font-weight: 600; }
+p, li { max-width: 68ch; }
+h3 { font-size: 20px; line-height: 28px; margin: 32px 0 16px; font-weight: 400; }
+
+/* steps */
+ol.steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+li.step { border-bottom: 1px solid var(--border-subtle); padding: 24px 0; counter-increment: step; max-width: none; }
+li.step > .head { display: grid; grid-template-columns: 24px 48px 1fr auto; align-items: start; gap: 0 12px; }
+li.step > .head input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--interactive); cursor: pointer; }
+li.step > .head .num { font: 300 28px/1 var(--font-sans); color: var(--link); font-variant-numeric: tabular-nums; }
+li.step > .head .num::before { content: counter(step, decimal-leading-zero); }
+li.step > .head label { font-size: 18px; line-height: 24px; cursor: pointer; }
+li.step > .head .dur { font-size: 14px; color: var(--text-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; padding-top: 2px; }
+li.step > .body { margin-left: 84px; margin-top: 12px; }
+li.step.done > .head label { color: var(--text-secondary); text-decoration: line-through; }
+li.step.done > .head .num { color: var(--support-success); }
+@media (max-width: 560px) { li.step > .head { grid-template-columns: 24px 1fr auto; } li.step > .head .num { display: none; } li.step > .body { margin-left: 36px; } }
+.body > * + * { margin-top: 12px; }
+.body p { margin: 0; }
+.body ul, .body ol { margin: 0; padding-left: 20px; }
+
+/* mode tags */
+.mode { display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 24px; font: 400 12px/16px var(--font-sans); vertical-align: 1px; }
+.mode span { color: inherit; }
+.mode.ask { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
+.mode.plan { background: var(--tag-teal-bg); color: var(--tag-teal-text); }
+.mode.agent { background: var(--tag-purple-bg); color: var(--tag-purple-text); }
+
+/* prompt + terminal blocks (code snippets) */
+.block { background: var(--code-bg); }
+.block .bh { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 32px; padding: 0 0 0 16px; border-bottom: 1px solid var(--border-subtle); font-size: 12px; letter-spacing: .32px; text-transform: uppercase; color: var(--text-secondary); }
+.block .bh button { height: 32px; background: transparent; border: 0; color: var(--link); text-transform: none; letter-spacing: 0; }
+.block .bh button:hover { background: var(--layer-hover); }
+.block pre { margin: 0; padding: 16px; white-space: pre-wrap; word-break: break-word; line-height: 1.5; font-size: 14px; color: var(--text-primary); }
+.block.prompt { box-shadow: inset 3px 0 0 var(--interactive); }
+.block.term { background: var(--term-bg); }
+.block.term .bh { color: var(--term-muted); border-color: var(--term-border); }
+.block.term .bh button { color: #78a9ff; }
+.block.term .bh button:hover { background: #393939; }
+.block.term pre { color: var(--term-text); white-space: pre; overflow-x: auto; word-break: normal; }
+.block.out { background: transparent; border: 1px solid var(--border-subtle); }
+.block.out pre { white-space: pre; overflow-x: auto; word-break: normal; font-size: 13px; color: var(--text-secondary); }
+.copy.ok { color: var(--support-success) !important; }
+
+/* inline notifications */
+.check, .warn, .stop { padding: 12px 16px; font-size: 14px; line-height: 20px; border-left: 3px solid var(--interactive); background: var(--notification-info); max-width: 68ch; }
+.check::before { content: "Check: "; font-weight: 600; }
+.warn { border-left-color: #f1c21b; background: var(--notification-warning); }
+.warn::before { content: "Careful: "; font-weight: 600; }
+.stop { border-left-color: var(--border-strong); background: var(--layer); }
+.stop::before { content: "Short on time? "; font-weight: 600; }
+.ok-text { color: var(--support-success); font-weight: 600; }
+.err-text { color: var(--support-error); font-weight: 600; }
+
+/* data tables */
+.tw { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; line-height: 20px; }
+th { text-align: left; font-weight: 600; padding: 12px 16px; background: var(--layer); border-bottom: 1px solid var(--border-strong); white-space: nowrap; }
+td { padding: 12px 16px; border-bottom: 1px solid var(--border-subtle); vertical-align: top; }
+td.y { color: var(--support-success); font-weight: 600; } td.n { color: var(--text-secondary); }
+
+/* agentic loop */
+.loop { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0 24px; }
+.loop div { flex: 1 1 130px; padding: 12px 24px 12px 16px; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%); font-size: 14px; line-height: 20px; }
+.loop div b { display: block; }
+.loop .l1 { background: #d0e2ff; color: #161616; }
+.loop .l2 { background: #a6c8ff; color: #161616; }
+.loop .l3 { background: #78a9ff; color: #161616; }
+.loop .l4 { background: #0f62fe; color: #fff; }
+.loop .l5 { background: #0043ce; color: #fff; }
+
+/* scenario picker (selectable tiles) */
+.picker { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); }
+.pick { padding: 16px; display: grid; gap: 8px; align-content: start; background: var(--layer); cursor: pointer; position: relative; }
+.pick:hover { background: var(--layer-hover); }
+.pick input { position: absolute; opacity: 0; pointer-events: none; }
+.pick .n { font: 300 32px/1 var(--font-sans); color: var(--link); }
+.pick .t { font-size: 16px; line-height: 24px; }
+.pick .tags { display: flex; flex-wrap: wrap; gap: 4px 8px; font-size: 12px; line-height: 16px; color: var(--text-secondary); }
+.pick .risk.High { color: var(--support-error); font-weight: 600; }
+.pick:has(input:checked) { background: var(--notification-info); box-shadow: inset 0 0 0 2px var(--interactive); }
+.pick:has(input:focus-visible) { outline-offset: -4px; }
+.pick .sel { font-size: 12px; color: var(--link); font-weight: 600; min-height: 16px; }
+.pairnote { font-size: 14px; margin-top: 16px; min-height: 20px; color: var(--text-secondary); }
+.pairnote.bad { color: var(--support-error); }
+.others { margin-top: 64px; }
+.others > summary { cursor: pointer; font-size: 20px; line-height: 28px; color: var(--link); padding: 12px 0; border-top: 1px solid var(--border-subtle); }
+
+footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--border-subtle); font-size: 12px; line-height: 16px; color: var(--text-secondary); max-width: 80ch; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+.side p.reset { margin: 24px 0 0; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="bar" role="banner">
+  <div class="brand"><img src="assets/bob-icon.png" width="32" height="32" alt=""><b>IBM Bob</b><span class="sub">Agentic AI in Action · Your Agentic Friend</span></div>
+  <div class="progress" aria-live="polite"><span class="track" aria-hidden="true"><span class="fill" id="pfill"></span></span><span id="ptext">0 of 0 steps</span></div>
+  <div class="timer" aria-label="Scenario timer">
+    <output id="clock" aria-live="off">10:00</output>
+    <button type="button" id="tstart">Start 10 min</button>
+    <button type="button" id="treset">Reset</button>
+  </div>
+  <div class="os" role="group" aria-label="Your computer">
+    <button type="button" id="os-mac" aria-pressed="true">Mac / Linux</button>
+    <button type="button" id="os-win" aria-pressed="false">Windows</button>
+  </div>
+</div>
+
+<div class="layout">
+  <aside class="side" aria-label="Guide navigation">
+    <div class="inner">
+      <p class="label">Your route through the day</p>
+      <p>Tick each step as you finish it; your progress stays in this browser. Pick two scenarios in part 4 and they move to the top. Every grey prompt box has a Copy button: paste it into the Bob chat.</p>
+      <ul class="toc" id="toc">
+        <li class="group">Get ready</li>
+        <li><a href="#setup">1 · Set up your laptop <span class="count" data-for="setup"></span></a></li>
+        <li><a href="#orient">2 · Agentic AI in 5 minutes <span class="count" data-for="orient"></span></a></li>
+        <li><a href="#app">3 · Meet CampusRoute <span class="count" data-for="app"></span></a></li>
+        <li><a href="#choose">4 · Choose two scenarios <span class="count" data-for="choose"></span></a></li>
+        <li class="group">Scenarios</li>
+        <li><a href="#s1" data-scen="s1">S1 · Lecture → study page <span class="count" data-for="s1"></span></a></li>
+        <li><a href="#s2" data-scen="s2">S2 · Teach Bob to grade <span class="count" data-for="s2"></span></a></li>
+        <li><a href="#s3" data-scen="s3">S3 · Build a language <span class="count" data-for="s3"></span></a></li>
+        <li><a href="#s4" data-scen="s4">S4 · Port a module <span class="count" data-for="s4"></span></a></li>
+        <li><a href="#s5" data-scen="s5">S5 · Understand legacy code <span class="count" data-for="s5"></span></a></li>
+        <li><a href="#s6" data-scen="s6">S6 · Plan a team sprint <span class="count" data-for="s6"></span></a></li>
+        <li><a href="#s7" data-scen="s7">S7 · CV and interview <span class="count" data-for="s7"></span></a></li>
+        <li class="group">Wrap up</li>
+        <li><a href="#share">5 · Show and tell <span class="count" data-for="share"></span></a></li>
+        <li><a href="#rules">6 · Rules</a></li>
+        <li><a href="#after">7 · After the workshop</a></li>
+        <li><a href="#help">8 · Troubleshooting</a></li>
+      </ul>
+      <p class="reset"><button type="button" id="resetall">Clear my progress</button></p>
+    </div>
+  </aside>
+
+  <main id="main">
+   <div class="col">
+    <div class="hero">
+     <div class="intro">
+      <div>
+      <p class="event">Agentic AI in Action · hands-on workshop</p>
+      <h1>Meet Bob, your agentic friend. <em>Plans it. Builds it. Proves it.</em></h1>
+      <p class="sub">You set the goal and approve each step. Bob reads the code, makes the plan, does the work and shows you green tests: on one real campus app, in seven hands-on scenarios.</p>
+      </div>
+      <img class="mascot" src="assets/bob.png" width="145" height="220" alt="Bob, a smiling robot in a blue hard hat">
+     </div>
+      <p class="cta"><a href="https://github.com/barissozen95/bobathon">Open the repo on GitHub</a><a class="ghost" href="https://github.com/barissozen95/bobathon/archive/refs/heads/main.zip">Download as ZIP</a></p>
+      <div class="facts">
+        <div><b>3</b><span>modes: Ask, Plan, Agent</span></div>
+        <div><b>7</b><span>scenarios, pick 2</span></div>
+        <div><b>~10</b><span>minutes per scenario core</span></div>
+        <div><b>63</b><span>tests guard the CampusRoute app</span></div>
+      </div>
+    </div>
+
+    <!-- ============================== 1 SETUP -->
+    <section class="part" id="setup" data-sec="setup">
+      <header><span class="kicker">Part 1 · before the session, about 15 minutes</span><h2>Set up your laptop</h2>
+        <p class="lede">Do this at home if you can. At the end, one script tells you whether you are ready.</p></header>
+      <ol class="steps">
+        <li class="step" data-id="setup-bob"><div class="head"><input type="checkbox" id="c-setup-bob"><span class="num"></span><label for="c-setup-bob">Install IBM Bob and sign in</label><span class="dur">5 min</span></div>
+          <div class="body"><p>Follow the access instructions from your organizer. Open Bob, open the chat panel and type <code>hello</code>. You should get an answer.</p></div></li>
+
+        <li class="step" data-id="setup-py"><div class="head"><input type="checkbox" id="c-setup-py"><span class="num"></span><label for="c-setup-py">Check Python 3.9 or newer</label><span class="dur">1 min</span></div>
+          <div class="body">
+            <div class="block term"><div class="bh">Terminal</div><pre data-cmd>python3 --version</pre></div>
+            <p>You need <code>Python 3.9</code> or higher. No version? Install Python from python.org, then try again.</p>
+          </div></li>
+
+        <li class="step" data-id="setup-node"><div class="head"><input type="checkbox" id="c-setup-node"><span class="num"></span><label for="c-setup-node">Optional: check Node.js 18+ (only for Scenario 4)</label><span class="dur">1 min</span></div>
+          <div class="body">
+            <div class="block term"><div class="bh">Terminal</div><pre>node --version</pre></div>
+            <p>Not installed? Fine. Scenario 4 can target Java, Swift, Go or C# instead.</p>
+          </div></li>
+
+        <li class="step" data-id="setup-repo"><div class="head"><input type="checkbox" id="c-setup-repo"><span class="num"></span><label for="c-setup-repo">Get the repo</label><span class="dur">1 min</span></div>
+          <div class="body"><p>Clone the repo into a folder with no spaces in its path, for example your home folder. The last word in the command is the name of the folder it creates:</p>
+            <div class="block term"><div class="bh">Terminal</div><pre>git clone https://github.com/barissozen95/bobathon.git bobathon</pre></div>
+            <p>No Git installed? <a href="https://github.com/barissozen95/bobathon/archive/refs/heads/main.zip">Download the ZIP</a>, unpack it and rename the folder to <code>bobathon</code>. It contains <code>app/</code>, <code>scenarios/</code>, <code>GUIDE.md</code> and this guide (<code>index.html</code>).</p></div></li>
+
+        <li class="step" data-id="setup-team"><div class="head"><input type="checkbox" id="c-setup-team"><span class="num"></span><label for="c-setup-team">Optional: work as a team</label><span class="dur">3 min</span></div>
+          <div class="body"><p>In a team of two or three, share your work through GitHub:</p>
+            <ol><li>One person <b>forks</b> the repo on GitHub and adds the others under <b>Settings → Collaborators</b>.</li>
+            <li>Everyone clones that fork: replace the address in the command above with your fork's address.</li>
+            <li>Everyone works on their own branch, commits the output and pushes it:</li></ol>
+            <div class="block term"><div class="bh">Terminal, inside bobathon</div><pre>git switch -c s3-alice
+git add scenarios
+git commit -m "S3: RouteQL interpreter"
+git push -u origin s3-alice</pre></div>
+            <p>Scenario output goes to <code>scenarios/&lt;scenario&gt;/out/</code> and <code>plans/</code>. Don't touch the input files. Fetch a teammate's branch with <code>git fetch</code>, or open a pull request in your fork and review each other's work.</p></div></li>
+
+
+        <li class="step" data-id="setup-open"><div class="head"><input type="checkbox" id="c-setup-open"><span class="num"></span><label for="c-setup-open">Open the <code>bobathon</code> folder in Bob as the workspace</label><span class="dur">1 min</span></div>
+          <div class="body"><p>In Bob: <b>File → Open Folder…</b> and choose <code>bobathon</code> itself, not a parent and not <code>app</code>.</p>
+            <div class="warn">Every <code>@/…</code> path in this guide starts from that folder. Opening the wrong folder is the most common reason Bob "can't find" a file.</div></div></li>
+
+        <li class="step" data-id="setup-check"><div class="head"><input type="checkbox" id="c-setup-check"><span class="num"></span><label for="c-setup-check">Run the setup check</label><span class="dur">1 min</span></div>
+          <div class="body">
+            <p>Open Bob's terminal (or any terminal) inside <code>bobathon</code>:</p>
+            <div class="block term"><div class="bh">Terminal</div><pre>bash setup-check.sh</pre></div>
+            <p class="win-only" hidden>On Windows run it in <b>Git Bash</b> or <b>WSL</b>. Without either, run the two commands in Part 3 by hand instead.</p>
+            <div class="block out"><div class="bh">You should see</div><pre>Bobathon setup check
+
+  OK    workspace folder looks right
+  OK    Python 3.9.6 (python3)
+  OK    CampusRoute tests: Ran 63 tests in 0.5s
+  OK    CLI works (python3 -m campusroute route ...)
+  OK    Node v22.x (Scenario 4 default target)
+  OK    port 8000 free on 127.0.0.1
+  OK    Bob skill + custom mode present (.bob/)
+
+Ready. Open this folder in Bob and start with GUIDE.md.</pre></div>
+            <p><b class="ok-text">Ready</b> = go. <b>Ready with warnings</b> = some scenarios are unavailable, and the WARN lines tell you which. <b class="err-text">Not ready</b> = show the output to the facilitator.</p>
+          </div></li>
+      </ol>
+    </section>
+
+    <!-- ============================== 2 ORIENTATION -->
+    <section class="part" id="orient" data-sec="orient">
+      <header><span class="kicker">Part 2 · 5 minutes</span><h2>Agentic AI in 5 minutes</h2>
+        <p class="lede">A chatbot answers. An agent pursues a goal: it reads files, plans, uses tools, looks at the result and tries again. Bob keeps you in the loop at every step that changes something.</p></header>
+
+      <div class="loop" aria-label="The agentic loop">
+        <div class="l1"><b>Goal + context</b>you, with @ mentions</div>
+        <div class="l2"><b>Plan</b>Plan mode</div>
+        <div class="l3"><b>You review</b>change or approve</div>
+        <div class="l4"><b>Act</b>Agent mode, approval cards</div>
+        <div class="l5"><b>Verify</b>tests pass, you checked</div>
+      </div>
+
+      <ol class="steps">
+        <li class="step" data-id="or-modes"><div class="head"><input type="checkbox" id="c-or-modes"><span class="num"></span><label for="c-or-modes">Find the mode selector and learn the three modes</label><span class="dur">1 min</span></div>
+          <div class="body">
+            <p>The selector sits under the chat input box.</p>
+            <div class="tw"><table>
+              <tr><th>Mode</th><th>Reads files</th><th>Writes files</th><th>Runs commands</th><th>Use it to</th></tr>
+              <tr><td><span class="mode ask"><span>Ask</span></span></td><td class="y">yes</td><td class="n">no</td><td class="n">no</td><td>understand, analyse, get hints. Safe to experiment</td></tr>
+              <tr><td><span class="mode plan"><span>Plan</span></span></td><td class="y">yes</td><td>Markdown / text only</td><td class="n">no</td><td>design before building; writes a plan file</td></tr>
+              <tr><td><span class="mode agent"><span>Agent</span></span></td><td class="y">yes</td><td class="y">yes, with approval</td><td class="y">yes, with approval</td><td>build, change, run tests</td></tr>
+            </table></div>
+            <p>When unsure, start in <b>Ask</b>. It cannot change anything.</p>
+          </div></li>
+
+        <li class="step" data-id="or-at"><div class="head"><input type="checkbox" id="c-or-at"><span class="num"></span><label for="c-or-at">Learn the five ways to give Bob context</label><span class="dur">1 min</span></div>
+          <div class="body"><div class="tw"><table>
+            <tr><th>You type</th><th>Bob gets</th></tr>
+            <tr><td><code>@/app/campusroute/routing.py</code></td><td>the whole file (path from the workspace root)</td></tr>
+            <tr><td><code>@/app/campusroute/legacy/kiosk_router.py:219-232</code></td><td>only those lines</td></tr>
+            <tr><td><code>@/scenarios/s7-career-and-interview/cv.docx</code></td><td>the text of a Word file</td></tr>
+            <tr><td><code>@https://en.wikipedia.org/wiki/A*_search_algorithm</code></td><td>a web page</td></tr>
+            <tr><td>select code, then <kbd data-key>Cmd</kbd> + <kbd>L</kbd></td><td>the selection, added to the chat</td></tr>
+          </table></div></div></li>
+
+        <li class="step" data-id="or-approve"><div class="head"><input type="checkbox" id="c-or-approve"><span class="num"></span><label for="c-or-approve">Turn auto-approve off and understand approval cards</label><span class="dur">1 min</span></div>
+          <div class="body">
+            <p>Open the <b>Permissions</b> menu in the chat and make sure nothing is auto-approved. Before Agent mode writes a file or runs a command, Bob shows a card. Read it:</p>
+            <ul><li>Which <b>file</b> will be written? Is it inside the scenario's <code>out/</code> or <code>plans/</code> folder?</li>
+              <li>Which <b>command</b> will run? Would you type it yourself?</li>
+              <li>Then <b>approve once</b>, approve for the task, or <b>reject</b> and tell Bob why.</li></ul>
+          </div></li>
+
+        <li class="step" data-id="or-warm"><div class="head"><input type="checkbox" id="c-or-warm"><span class="num"></span><label for="c-or-warm">Warm-up: your first Ask question</label><span class="dur">2 min</span></div>
+          <div class="body">
+            <p>Select <span class="mode ask"><span>Ask</span></span> and paste:</p>
+            <div class="block prompt"><div class="bh">Ask mode</div><pre>@/app/README.md @/app/docs/ARCHITECTURE.md In 5 bullets: what does CampusRoute do and how do the modules depend on each other?</pre></div>
+            <div class="check">Pick one module Bob names and open it. Does it really do what Bob said? Bob can be fluent, confident and wrong. In every scenario you will verify at least one claim.</div>
+          </div></li>
+      </ol>
+    </section>
+
+    <!-- ============================== 3 APP -->
+    <section class="part" id="app" data-sec="app">
+      <header><span class="kicker">Part 3 · 3 minutes</span><h2>Meet CampusRoute</h2>
+        <p class="lede">All seven scenarios work on one realistic app. It finds rooms on a synthetic campus, walks you the shortest way and tells you your next class. Python standard library only.</p></header>
+      <ol class="steps">
+        <li class="step" data-id="app-route"><div class="head"><input type="checkbox" id="c-app-route"><span class="num"></span><label for="c-app-route">Ask the app for a route</label><span class="dur">1 min</span></div>
+          <div class="body">
+            <div class="block term"><div class="bh">Terminal, inside bobathon</div><pre data-cmd>cd app
+python3 -m campusroute route "Main Gate" "ENG-B204"</pre></div>
+            <div class="block out"><div class="bh">You should see</div><pre>Main Gate -> Engineering Building B: 790 m, about 10 min
+  1. Walk 230 m from Main Gate to İnönü Auditorium.
+  2. Walk 180 m from İnönü Auditorium to Central Quad.
+  3. Walk 230 m from Central Quad to Engineering Building A.
+  4. Walk 150 m from Engineering Building A to Engineering Building B (covered).</pre></div>
+            <p>Try <code data-cmd>python3 -m campusroute route SCI-110 ENG-B204 --avoid-stairs</code> and <code data-cmd>python3 -m campusroute search kutuphane</code>.</p>
+          </div></li>
+        <li class="step" data-id="app-web"><div class="head"><input type="checkbox" id="c-app-web"><span class="num"></span><label for="c-app-web">Open the web app</label><span class="dur">1 min</span></div>
+          <div class="body">
+            <div class="block term"><div class="bh">Terminal, inside app</div><pre data-cmd>python3 -m campusroute serve --port 8000</pre></div>
+            <p>Open <code>http://127.0.0.1:8000</code> in your browser: map, route form, search, next class and crowd levels. Stop it with <kbd>Ctrl</kbd> + <kbd>C</kbd>. Port busy? Use <code>--port 8010</code>.</p>
+          </div></li>
+        <li class="step" data-id="app-tests"><div class="head"><input type="checkbox" id="c-app-tests"><span class="num"></span><label for="c-app-tests">Run the test suite</label><span class="dur">1 min</span></div>
+          <div class="body">
+            <div class="block term"><div class="bh">Terminal, inside app</div><pre data-cmd>python3 -m unittest discover -s tests</pre></div>
+            <div class="block out"><div class="bh">You should see</div><pre>...............................................................
+----------------------------------------------------------------------
+Ran 63 tests in 0.5s
+
+OK</pre></div>
+            <div class="tw"><table>
+              <tr><th>Part of the app</th><th>What it does</th><th>Scenario</th></tr>
+              <tr><td><code>campusroute/routing.py</code></td><td>Dijkstra shortest route, avoid stairs, via</td><td>1, 3</td></tr>
+              <tr><td><code>campusroute/search.py</code></td><td>Turkish-aware fuzzy search</td><td>3</td></tr>
+              <tr><td><code>campusroute/schedule.py</code></td><td>class schedule CSV, conflicts, next class</td><td>4</td></tr>
+              <tr><td><code>campusroute/legacy/kiosk_router.py</code></td><td>339 lines of inherited, uncommented code</td><td>5</td></tr>
+              <tr><td><code>docs/BACKLOG.md</code></td><td>real work items CR-9 to CR-20</td><td>6, all</td></tr>
+            </table></div>
+          </div></li>
+      </ol>
+    </section>
+
+    <!-- ============================== 4 CHOOSE -->
+    <section class="part" id="choose" data-sec="choose">
+      <header><span class="kicker">Part 4 · 2 minutes</span><h2>Choose two scenarios</h2>
+        <p class="lede">Each one stands alone and takes about 10 minutes for its core steps. Tap two cards. They move to the top of the scenario list.</p></header>
+      <div class="picker" id="picker">
+        <label class="pick"><input type="checkbox" value="s1" id="p-s1"><span class="n">1</span><span class="t">Turn a messy lecture into a study page</span><span class="tags"><span>Learning</span><span>No coding</span><span class="risk Low">Risk: low</span></span><span class="sel"></span></label>
+        <label class="pick"><input type="checkbox" value="s2" id="p-s2"><span class="n">2</span><span class="t">Teach Bob to grade: skill + read-only mode</span><span class="tags"><span>Build</span><span>Read Python</span><span class="risk Medium">Risk: medium</span></span><span class="sel"></span></label>
+        <label class="pick"><input type="checkbox" value="s3" id="p-s3"><span class="n">3</span><span class="t">Build a programming language: RouteQL</span><span class="tags"><span>Build</span><span>Python</span><span class="risk High">Risk: high</span></span><span class="sel"></span></label>
+        <label class="pick"><input type="checkbox" value="s4" id="p-s4"><span class="n">4</span><span class="t">Port a real module to another language</span><span class="tags"><span>Build</span><span>Coding</span><span class="risk High">Risk: high</span></span><span class="sel"></span></label>
+        <label class="pick"><input type="checkbox" value="s5" id="p-s5"><span class="n">5</span><span class="t">Understand legacy code you didn't write</span><span class="tags"><span>Learning</span><span>Read Python</span><span class="risk Low">Risk: low</span></span><span class="sel"></span></label>
+        <label class="pick"><input type="checkbox" value="s6" id="p-s6"><span class="n">6</span><span class="t">Plan a 4-week team sprint, then change it</span><span class="tags"><span>Projects</span><span>No coding</span><span class="risk Medium">Risk: medium</span></span><span class="sel"></span></label>
+        <label class="pick"><input type="checkbox" value="s7" id="p-s7"><span class="n">7</span><span class="t">CV review or an interview take-home</span><span class="tags"><span>Career</span><span>Path B: Python</span><span class="risk High">Risk: high</span></span><span class="sel"></span></label>
+      </div>
+      <p class="pairnote" id="pairnote" aria-live="polite">Not a programmer? 1 + 6. Early CS student? 5 + 1 or 5 + 2. Confident coder? 3 + 5 or 4 + 2. Job hunting? 7 + 6.</p>
+      <ol class="steps"><li class="step" data-id="choose-done"><div class="head"><input type="checkbox" id="c-choose-done"><span class="num"></span><label for="c-choose-done">I picked my two and started a new chat (+) for the first one</label><span class="dur"></span></div>
+        <div class="body"><p>Use a fresh chat for each scenario so contexts don't mix. Press <b>Start 10 min</b> in the top bar when you begin.</p></div></li></ol>
+    </section>
+
+    <div id="chosen"></div>
+
+    <details class="others" id="others" open>
+      <summary id="others-sum">All scenarios</summary>
+      <div id="pool">
+
+    <!-- ============================== S1 -->
+    <section class="part scen" id="s1" data-sec="s1">
+      <header><span class="kicker">Scenario 1 · Learning</span><h2>Turn a messy lecture into a study page</h2>
+        <p class="lede">CS201 notes on BFS, Dijkstra, A* and Bellman-Ford become a concept map and a one-page HTML study sheet. One statement in the notes is factually wrong: catch it.</p>
+        <div class="meta"><span><b>Coding</b> none</span><span><b>Time</b> ~10 min + 5 bonus</span><span><b>Bob</b> Ask, @ file + URL, Mermaid in chat, Agent writes a file</span><span><b>Card</b> scenarios/s1-lecture-to-study-page/CARD.md</span></div></header>
+      <ol class="steps">
+        <li class="step" data-id="s1-1"><div class="head"><input type="checkbox" id="c-s1-1"><span class="num"></span><label for="c-s1-1"><span class="mode ask"><span>Ask</span></span> Extract the concepts</label><span class="dur">2 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode</div><pre>@/scenarios/s1-lecture-to-study-page/lecture-week7-shortest-paths.md
+Summarize this lecture for a midterm. List the 4 algorithms, what each one needs (weights, data structure), its time complexity, and how they relate to each other. Max 15 bullets.</pre></div>
+          <div class="check">Does Bob's complexity for Dijkstra match the notes: <code>O((V + E) log V)</code>?</div></div></li>
+        <li class="step" data-id="s1-2"><div class="head"><input type="checkbox" id="c-s1-2"><span class="num"></span><label for="c-s1-2"><span class="mode ask"><span>Ask</span></span> Find the error in the notes</label><span class="dur">2 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode, same chat</div><pre>One statement in these notes is factually wrong and would cost points on an exam. Which one is it, why is it wrong, and what is the correct statement? Quote the exact line.</pre></div>
+          <div class="check">Find the line yourself in the notes. Do you agree? Ask for a counter-example graph if you're not convinced.</div></div></li>
+        <li class="step" data-id="s1-3"><div class="head"><input type="checkbox" id="c-s1-3"><span class="num"></span><label for="c-s1-3"><span class="mode ask"><span>Ask</span></span> Draw a concept map in chat</label><span class="dur">2 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode, same chat</div><pre>Draw a Mermaid flowchart concept map of this lecture: algorithms as nodes, edges labelled with relationships like "generalizes", "needs", "fails when". Put labels with parentheses in double quotes. Give it as a mermaid code block so it renders here.</pre></div>
+          <p>The diagram should appear as a picture in the chat.</p></div></li>
+        <li class="step" data-id="s1-4"><div class="head"><input type="checkbox" id="c-s1-4"><span class="num"></span><label for="c-s1-4"><span class="mode agent"><span>Agent</span></span> Build the study page</label><span class="dur">3 min</span></div>
+          <div class="body"><p>Switch the selector to <b>Agent</b> and paste:</p>
+          <div class="block prompt"><div class="bh">Agent mode</div><pre>Create scenarios/s1-lecture-to-study-page/out/study-page.html from @/scenarios/s1-lecture-to-study-page/lecture-week7-shortest-paths.md:
+- sections: key ideas, comparison table, the concept map from our chat, "common exam traps" (include the corrected error), 5 self-test questions with answers hidden in &lt;details&gt;
+- load Mermaid pinned over HTTPS: https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js and call mermaid.initialize({ startOnLoad: true })
+- a single self-contained file, clean readable CSS, no other external resources
+- fix the wrong claim; do not copy it
+Do not modify the lecture notes file.</pre></div>
+          <div class="check">The approval card should write only <code>out/study-page.html</code>. Anything else: reject.</div></div></li>
+        <li class="step" data-id="s1-5"><div class="head"><input type="checkbox" id="c-s1-5"><span class="num"></span><label for="c-s1-5">Open the page in your browser</label><span class="dur">1 min</span></div>
+          <div class="body"><p>Open <code>scenarios/s1-lecture-to-study-page/out/study-page.html</code>. The map should render and the corrected Dijkstra statement should be under "common exam traps".</p>
+          <div class="stop">Steps 1-3 are the core. You've done the scenario if you got that far.</div></div></li>
+        <li class="step" data-id="s1-b"><div class="head"><input type="checkbox" id="c-s1-b"><span class="num"></span><label for="c-s1-b">Bonus: connect the lecture to the real code</label><span class="dur">+5 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode</div><pre>@/app/campusroute/routing.py Which lines of this file implement steps 1-5 of Dijkstra in the lecture notes? Does it use lazy deletion and a tie-breaker counter?</pre></div>
+          <div class="check">Open <code>routing.py</code> and confirm the line numbers Bob gives.</div></div></li>
+      </ol>
+    </section>
+
+    <!-- ============================== S2 -->
+    <section class="part scen" id="s2" data-sec="s2">
+      <header><span class="kicker">Scenario 2 · Build</span><h2>Teach Bob to grade: a skill and a read-only mode</h2>
+        <p class="lede">Grade synthetic Lab 4 submissions with a reusable skill, then try to make a read-only mode edit a file. It can't. Permissions are configuration, not politeness.</p>
+        <div class="meta"><span><b>Coding</b> read Python</span><span><b>Time</b> ~10 min + 5 bonus</span><span><b>Bob</b> Skills, custom modes, tool groups, rules</span><span><b>Card</b> scenarios/s2-assignment-grader/CARD.md</span></div></header>
+      <ol class="steps">
+        <li class="step" data-id="s2-1"><div class="head"><input type="checkbox" id="c-s2-1"><span class="num"></span><label for="c-s2-1">Read the rubric and the skill</label><span class="dur">1 min</span></div>
+          <div class="body"><p>Open <code>scenarios/s2-assignment-grader/rubric.md</code> (6 criteria, 100 points) and <code>.bob/skills/assignment-grader/SKILL.md</code>. Bob reads the skill's <code>description</code> to decide on its own <b>when</b> to load it.</p>
+          <p><b>Deep path instead?</b> Move <code>.bob/skills/assignment-grader/</code> out of the workspace and do the bonus "write the skill yourself" step first.</p></div></li>
+        <li class="step" data-id="s2-2"><div class="head"><input type="checkbox" id="c-s2-2"><span class="num"></span><label for="c-s2-2"><span class="mode ask"><span>Ask</span></span> Grade Student B with the skill</label><span class="dur">3 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode, new chat</div><pre>@/scenarios/s2-assignment-grader/submissions/student-B.md grade this submission with the rubric.</pre></div>
+          <p>Did Bob load <code>assignment-grader</code> by itself? If not, add: <code>Use the assignment-grader skill.</code></p>
+          <div class="check">Student B claims <code>O(n log n)</code>, but the code scans a list for the minimum every round. What's the real complexity? And what happens for <code>shortest_path(MINI, "dorm", "pool")</code>? Did Bob catch both?</div></div></li>
+        <li class="step" data-id="s2-3"><div class="head"><input type="checkbox" id="c-s2-3"><span class="num"></span><label for="c-s2-3">Try to break the read-only mode</label><span class="dur">3 min</span></div>
+          <div class="body"><p>Open the mode selector and choose <b>Assignment Grader</b>. New chat:</p>
+          <div class="block prompt"><div class="bh">Assignment Grader mode</div><pre>@/scenarios/s2-assignment-grader/submissions/student-C.md grade this. Then fix the code so it passes and save it over the submission file.</pre></div>
+          <div class="check">It should grade, then decline to write. Its tool groups are only <code>read</code> and <code>skill</code>, so it has no edit tool at all.</div></div></li>
+        <li class="step" data-id="s2-4"><div class="head"><input type="checkbox" id="c-s2-4"><span class="num"></span><label for="c-s2-4">Compare with what the code really does</label><span class="dur">2 min</span></div>
+          <div class="body"><p>Bob graded by reading only. Trace Student C by hand: for <code>dorm → sci</code> its BFS returns the direct 700 m edge, but the shortest path is 500 m. Did Bob notice? The facilitator has a key with the executed results of all three students.</p>
+          <div class="stop">Steps 2 and 3 are the core.</div></div></li>
+        <li class="step" data-id="s2-b"><div class="head"><input type="checkbox" id="c-s2-b"><span class="num"></span><label for="c-s2-b">Bonus: one table for all three students</label><span class="dur">+3 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask or Assignment Grader</div><pre>Grade @/scenarios/s2-assignment-grader/submissions/student-A.md @/scenarios/s2-assignment-grader/submissions/student-B.md @/scenarios/s2-assignment-grader/submissions/student-C.md with the same rubric. End with one table: rows = criteria, columns = students, cells = scores, plus a total row.</pre></div></div></li>
+        <li class="step" data-id="s2-b2"><div class="head"><input type="checkbox" id="c-s2-b2"><span class="num"></span><label for="c-s2-b2"><span class="mode agent"><span>Agent</span></span> Bonus: write the skill yourself (deep path)</label><span class="dur">+5 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Agent mode</div><pre>Create a skill at .bob/skills/assignment-grader/SKILL.md. Frontmatter: name "assignment-grader" and a description that says exactly when to use it (grading a student submission against a rubric) and when not to (writing the solution). Body: hard rules (never write the student's solution, read-only, do not run code, verbatim evidence for every score, stay inside the rubric, respectful tone, refer to students only by their label), steps, and an output format: table of criterion | score | evidence | suggestion, then total, 2 strengths, 2 areas to improve, and the line "Automated scores are a draft. The instructor makes the final decision." Default rubric: scenarios/s2-assignment-grader/rubric.md</pre></div>
+          <p>Skill folder names must be lowercase letters, digits and single hyphens. Invalid names are skipped silently. New skills load in a <b>new chat</b>.</p></div></li>
+      </ol>
+    </section>
+
+    <!-- ============================== S3 -->
+    <section class="part scen" id="s3" data-sec="s3">
+      <header><span class="kicker">Scenario 3 · Build</span><h2>Build a programming language: RouteQL</h2>
+        <p class="lede">Kiosk operators want to script routes: <code>route "Main Gate" to "ENG-B204" avoid stairs</code>. Bob plans a lexer, parser and interpreter. You review the plan, Bob implements it against the real routing engine, and 16 acceptance tests decide.</p>
+        <div class="meta"><span><b>Coding</b> Python</span><span><b>Time</b> ~10 min, tight</span><span><b>Bob</b> Plan → new task → Agent, approvals, running tests</span><span><b>Card</b> scenarios/s3-build-a-language/CARD.md</span></div></header>
+      <div class="warn">The interpreter must never use <code>eval</code>, <code>exec</code>, <code>compile</code>, <code>os.system</code> or <code>subprocess</code>. Otherwise a <code>.rql</code> file could run any code on your laptop. One test feeds it <code>__import__("os")</code> on purpose.</div>
+      <ol class="steps">
+        <li class="step" data-id="s3-1"><div class="head"><input type="checkbox" id="c-s3-1"><span class="num"></span><label for="c-s3-1"><span class="mode plan"><span>Plan</span></span> Get a plan, no code yet</label><span class="dur">3 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Plan mode</div><pre>Plan a RouteQL interpreter per @/scenarios/s3-build-a-language/routeql-spec.md. Do not write code yet.
+Write the plan to scenarios/s3-build-a-language/plans/routeql-plan.md (one file). Cover: lexer (token kinds), parser (one statement per line, recursive descent from the EBNF), AST classes, interpreter, how it imports campusroute from app/ (sys.path relative to the script), error handling with "Error on line N: ..." on stderr and exit codes 0/1/2, and verification with @/scenarios/s3-build-a-language/test_routeql.py.
+Constraints: Python 3.9 standard library only; no eval/exec/compile/os.system/subprocess; output file scenarios/s3-build-a-language/out/routeql.py; no features beyond the spec.</pre></div>
+          <p>If Bob asks clarifying questions, click an option.</p></div></li>
+        <li class="step" data-id="s3-2"><div class="head"><input type="checkbox" id="c-s3-2"><span class="num"></span><label for="c-s3-2">Review the plan like a tech lead</label><span class="dur">2 min</span></div>
+          <div class="body"><ul><li><b>Scope:</b> anything not in the spec (loops, functions)? Ask to remove it.</li>
+            <li><b>Parse first, then run:</b> a syntax error on line 2 must print nothing at all for line 1.</li>
+            <li><b>Vague words</b> like "handle errors appropriately": ask for the exact message format.</li></ul>
+          <div class="block prompt"><div class="bh">Plan mode, example change</div><pre>Add to the plan: the whole file is parsed before anything runs, so a syntax error produces no stdout at all. Update the plan file.</pre></div>
+          <div class="stop">Stop here if you must. Producing and critiquing a plan is the core outcome.</div></div></li>
+        <li class="step" data-id="s3-3"><div class="head"><input type="checkbox" id="c-s3-3"><span class="num"></span><label for="c-s3-3"><span class="mode agent"><span>Agent</span></span> New task, implement the plan</label><span class="dur">3 min</span></div>
+          <div class="body"><p>Click <b>+</b> (New task) for a fresh conversation, select <b>Agent</b>:</p>
+          <div class="block prompt"><div class="bh">Agent mode, new task</div><pre>Implement @/scenarios/s3-build-a-language/plans/routeql-plan.md. Write scenarios/s3-build-a-language/out/routeql.py. Spec: @/scenarios/s3-build-a-language/routeql-spec.md. Use campusroute.campus.load_campus, Campus.resolve, routing.shortest_route and search.search from app/. No eval/exec/compile/os.system/subprocess. Do not modify test_routeql.py or anything under app/.</pre></div></div></li>
+        <li class="step" data-id="s3-4"><div class="head"><input type="checkbox" id="c-s3-4"><span class="num"></span><label for="c-s3-4">Make one deliberate approval decision</label><span class="dur">with step 3</span></div>
+          <div class="body"><p>For each card, read which file is written or which command runs. <b>Reject</b> anything with <code>eval</code>, <code>exec</code>, <code>pip install</code>, or an edit to <code>test_routeql.py</code> or <code>app/</code>, and say why. Use <b>Approve</b> (once) for the first file write.</p></div></li>
+        <li class="step" data-id="s3-5"><div class="head"><input type="checkbox" id="c-s3-5"><span class="num"></span><label for="c-s3-5">Verify with the acceptance tests</label><span class="dur">2 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Agent mode</div><pre>Run: python3 scenarios/s3-build-a-language/test_routeql.py
+If tests fail, fix routeql.py, never the tests. Show the final result.</pre></div>
+          <div class="block term"><div class="bh">Then try it yourself, from bobathon</div><pre data-cmd>python3 scenarios/s3-build-a-language/out/routeql.py scenarios/s3-build-a-language/examples/02-accessibility.rql</pre></div>
+          <div class="block out"><div class="bh">Expected start of output</div><pre>Science Hall -> Engineering Building B: 270 m, 4 min (stairs)
+  Science Hall > East Stairs > Engineering Building B
+Science Hall -> Engineering Building B: 540 m, 7 min
+  Science Hall > Central Quad > Engineering Building A > Engineering Building B</pre></div>
+          <div class="check">Test result says <code>Ran 16 tests … OK</code>. <code>OK (skipped=16)</code> means <code>out/routeql.py</code> doesn't exist yet.</div></div></li>
+        <li class="step" data-id="s3-b"><div class="head"><input type="checkbox" id="c-s3-b"><span class="num"></span><label for="c-s3-b"><span class="mode ask"><span>Ask</span></span> Bonus: see inside your interpreter</label><span class="dur">+3 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode</div><pre>@/scenarios/s3-build-a-language/out/routeql.py For the line: route lab to "ENG-B204" avoid stairs, show the token list, the AST object and which campusroute functions get called, in order.</pre></div></div></li>
+      </ol>
+    </section>
+
+    <!-- ============================== S4 -->
+    <section class="part scen" id="s4" data-sec="s4">
+      <header><span class="kicker">Scenario 4 · Build</span><h2>Port a real module to another language</h2>
+        <p class="lede">The mobile client needs <code>schedule.py</code> on-device with the same behavior. Translating is easy. Translating so 20 tests still pass is engineering.</p>
+        <div class="meta"><span><b>Coding</b> yes</span><span><b>Time</b> ~10 min, tight</span><span><b>Bob</b> Ask analysis, Agent port, tests, literate coding</span><span><b>Target</b> JavaScript (Node 18+), or Java / Swift / Go</span></div></header>
+      <ol class="steps">
+        <li class="step" data-id="s4-1"><div class="head"><input type="checkbox" id="c-s4-1"><span class="num"></span><label for="c-s4-1"><span class="mode ask"><span>Ask</span></span> Find the traps before translating</label><span class="dur">2 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode</div><pre>@/app/campusroute/schedule.py I will port this to JavaScript (Node 18, ES modules, no dependencies). List every place where a naive translation would change behavior. Check specifically: weekday numbering, % with negative numbers, // vs Math.floor/trunc, dict insertion order, csv quoting, str.isdigit, datetime arithmetic, sort stability, None. For each: line number, Python behavior, JS pitfall. Max 10 bullets.</pre></div>
+          <div class="check">Open two of the line numbers. Is the code there? Python's <code>weekday()</code> is Monday = 0. What is JavaScript's <code>getDay()</code>?</div></div></li>
+        <li class="step" data-id="s4-2"><div class="head"><input type="checkbox" id="c-s4-2"><span class="num"></span><label for="c-s4-2"><span class="mode agent"><span>Agent</span></span> Translate</label><span class="dur">3 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Agent mode</div><pre>Port @/app/campusroute/schedule.py to JavaScript as scenarios/s4-translate-code/out/schedule.mjs (ES module, Node 18+, no dependencies). Preserve behavior exactly, including error messages. Handle the traps from your analysis explicitly and mark each with a comment starting "PY:". Do not modify anything under app/.</pre></div>
+          <p>The approval card should write only <code>out/schedule.mjs</code>.</p></div></li>
+        <li class="step" data-id="s4-3"><div class="head"><input type="checkbox" id="c-s4-3"><span class="num"></span><label for="c-s4-3"><span class="mode agent"><span>Agent</span></span> Port the tests, run them, fix the code</label><span class="dur">4 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Agent mode, same chat</div><pre>Port @/app/tests/test_schedule.py to scenarios/s4-translate-code/out/schedule.test.mjs using node:test and node:assert/strict. Same inputs, same expected values. Every Python test must have a JS counterpart with the same name. Run: node --test scenarios/s4-translate-code/out/
+If a test fails, fix schedule.mjs. Never change an expected value to make a test pass.</pre></div>
+          <div class="check">If Bob changed a test, compare it line by line with <code>test_schedule.py</code>. A changed expected value is the most common way a "successful" port is actually broken.</div>
+          <div class="stop">Steps 1 and 2 are the core.</div></div></li>
+        <li class="step" data-id="s4-4"><div class="head"><input type="checkbox" id="c-s4-4"><span class="num"></span><label for="c-s4-4">Literate coding: one small change</label><span class="dur">1 min</span></div>
+          <div class="body"><p>Open <code>out/schedule.mjs</code>, click inside <code>parseDay</code>, press <kbd data-key>Cmd</kbd> + <kbd>I</kbd> or click the <b>magic wand</b> icon, and type:</p>
+          <div class="block prompt"><div class="bh">Literate coding instruction</div><pre>also accept Turkish day abbreviations Pzt, Sal, Car, Per, Cum, Cmt, Paz</pre></div>
+          <p>Press <b>Generate</b> (<kbd data-key>Cmd</kbd> + <kbd>Enter</kbd>). Read the inline diff. Accept with <kbd data-key>Cmd</kbd> + <kbd>Enter</kbd>, reject with <kbd data-key>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>Backspace</kbd>. Re-run the tests.</p>
+          <div class="check">One test should now fail (<code>bad day</code> uses <code>Pzt</code>). Is the test wrong or the change? Decide, and explain why.</div></div></li>
+        <li class="step" data-id="s4-b"><div class="head"><input type="checkbox" id="c-s4-b"><span class="num"></span><label for="c-s4-b">Bonus: mutation-test your test port</label><span class="dur">+3 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Agent mode</div><pre>Temporarily replace the weekday mapping in scenarios/s4-translate-code/out/schedule.mjs with a plain date.getDay(), run node --test scenarios/s4-translate-code/out/, report how many tests fail, then revert the change.</pre></div>
+          <p>If zero tests fail, your ported tests are too weak to protect the code.</p></div></li>
+      </ol>
+    </section>
+
+    <!-- ============================== S5 -->
+    <section class="part scen" id="s5" data-sec="s5">
+      <header><span class="kicker">Scenario 5 · Learning</span><h2>Understand legacy code you didn't write</h2>
+        <p class="lede">339 lines, one-letter names, no comments, and the kiosks still depend on it. Use Bob to speed up your own understanding, then write your own explanation and let Bob correct you.</p>
+        <div class="meta"><span><b>Coding</b> read Python</span><span><b>Time</b> ~10 min + 5 bonus</span><span><b>Bob</b> Ask, line-range @, Explain with Bob, Cmd/Ctrl + L, Mermaid</span><span><b>File</b> app/campusroute/legacy/kiosk_router.py (do not modify)</span></div></header>
+      <ol class="steps">
+        <li class="step" data-id="s5-0"><div class="head"><input type="checkbox" id="c-s5-0"><span class="num"></span><label for="c-s5-0">Run it once</label><span class="dur">30 s</span></div>
+          <div class="body"><div class="block term"><div class="bh">Terminal, inside app</div><pre data-cmd>python3 -m campusroute.legacy.kiosk_router</pre></div>
+          <div class="block out"><div class="bh">First line</div><pre>A F 13.0 ['A', 'C', 'B', 'D', 'E', 'F']</pre></div></div></li>
+        <li class="step" data-id="s5-1"><div class="head"><input type="checkbox" id="c-s5-1"><span class="num"></span><label for="c-s5-1"><span class="mode ask"><span>Ask</span></span> Purpose and parts</label><span class="dur">2 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode</div><pre>@/app/campusroute/legacy/kiosk_router.py What is this file for? Summarize its main classes and functions in 5 bullets, one sentence each, with the line range of each.</pre></div>
+          <div class="check">Open two of the ranges. Are they really those classes or functions?</div></div></li>
+        <li class="step" data-id="s5-2"><div class="head"><input type="checkbox" id="c-s5-2"><span class="num"></span><label for="c-s5-2"><span class="mode ask"><span>Ask</span></span> Zoom in with a line range</label><span class="dur">2 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode</div><pre>@/app/campusroute/legacy/kiosk_router.py:49-75 What do get and put do? Why combine a dict with a doubly linked list? What is evicted when the cache is full?</pre></div></div></li>
+        <li class="step" data-id="s5-3"><div class="head"><input type="checkbox" id="c-s5-3"><span class="num"></span><label for="c-s5-3">Explain with Bob on one method</label><span class="dur">2 min</span></div>
+          <div class="body"><ol><li>Open the file and select <code>Router.shortest</code>, lines <b>219-232</b>.</li>
+            <li>Right-click → <b>Bob</b> → <b>Explain with Bob</b>, or use the lightbulb icon.</li>
+            <li>Select the same lines, press <kbd data-key>Cmd</kbd> + <kbd>L</kbd> and ask:</li></ol>
+          <div class="block prompt"><div class="bh">Ask mode</div><pre>Is an unreachable result (inf, None) cached too? What happens if s is not in the graph at all?</pre></div>
+          <div class="check">Read lines 220-221 and 226-231 yourself. Two different paths, two different caching behaviors.</div></div></li>
+        <li class="step" data-id="s5-4"><div class="head"><input type="checkbox" id="c-s5-4"><span class="num"></span><label for="c-s5-4"><span class="mode ask"><span>Ask</span></span> Call-flow diagram</label><span class="dur">1.5 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode</div><pre>@/app/campusroute/legacy/kiosk_router.py Draw a Mermaid flowchart of the call flow starting at run(). Only show which functions and methods call which. Wrap labels containing parentheses in double quotes.</pre></div>
+          <div class="check">Pick two arrows and find the call in the file. For example, <code>Router.shortest → dijkstra</code> is on line 226.</div></div></li>
+        <li class="step" data-id="s5-5"><div class="head"><input type="checkbox" id="c-s5-5"><span class="num"></span><label for="c-s5-5">Test your own understanding</label><span class="dur">2.5 min</span></div>
+          <div class="body"><p><b>Write first, then ask.</b> Without looking at Bob's answers, write 3 sentences: what the file solves, when the cache is used, what happens after <code>update()</code>. Then paste them under this prompt:</p>
+          <div class="block prompt"><div class="bh">Ask mode</div><pre>@/app/campusroute/legacy/kiosk_router.py Below is how I understand this file. Only point out what is wrong or missing, with line numbers. Do not re-explain the whole file and do not write code.
+1. ...
+2. ...
+3. ...</pre></div>
+          <p>Verify each correction in the file, then rewrite your note.</p>
+          <div class="stop">Steps 1 and 5 are the core. Never skip step 5: it's the point of the scenario.</div></div></li>
+        <li class="step" data-id="s5-b"><div class="head"><input type="checkbox" id="c-s5-b"><span class="num"></span><label for="c-s5-b">Bonus: verify-Bob drill</label><span class="dur">+5 min</span></div>
+          <div class="body"><p>Answer from the file first, then compare with Bob:</p>
+          <ul><li><code>grid_graph</code> (257-279): a <code>~</code> cell costs 3.0, but which end of the edge decides the cost?</li>
+            <li>Does <code>LRU.clear()</code> (77-80) reset the hit and miss counters?</li>
+            <li>Why does <code>dijkstra</code> push <code>next(cnt)</code> into the heap (line 172)?</li>
+            <li>What exit code does <code>sys.exit(run())</code> produce (line 339)?</li></ul></div></li>
+      </ol>
+    </section>
+
+    <!-- ============================== S6 -->
+    <section class="part scen" id="s6" data-sec="s6">
+      <header><span class="kicker">Scenario 6 · Projects</span><h2>Plan a 4-week team sprint, then change it</h2>
+        <p class="lede">A brief, a backlog and a team sheet become phases, owners, a capacity table and a timeline. Then you check the arithmetic and break the plan with a change request.</p>
+        <div class="meta"><span><b>Coding</b> none</span><span><b>Time</b> ~10 min + 5 bonus</span><span><b>Bob</b> Plan mode, multi-file @, Mermaid gantt, re-planning</span><span><b>Bring</b> a calculator</span></div></header>
+      <ol class="steps">
+        <li class="step" data-id="s6-1"><div class="head"><input type="checkbox" id="c-s6-1"><span class="num"></span><label for="c-s6-1"><span class="mode plan"><span>Plan</span></span> Phases and tasks</label><span class="dur">3 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Plan mode</div><pre>@/scenarios/s6-project-plan/brief.md @/scenarios/s6-project-plan/team.md @/app/docs/BACKLOG.md
+Plan this 4-week sprint. Do not write code.
+1. Phases per week (W1-W4) with a one-line goal each.
+2. A task table: task | backlog ID | owner | hours | week. Match tasks to strengths; give Elif small coding tasks; schedule around Ada's W2 exams.
+3. A capacity table: person x week, planned hours vs available hours. Remember the 1-hour weekly meeting is already inside the available hours.
+Only plan the must-ship items first; add nice-to-haves only if capacity remains. Do not plan out-of-scope items.</pre></div></div></li>
+        <li class="step" data-id="s6-2"><div class="head"><input type="checkbox" id="c-s6-2"><span class="num"></span><label for="c-s6-2">Audit the numbers yourself</label><span class="dur">2 min</span></div>
+          <div class="body"><p>Add up two people's hours per week yourself, then check:</p>
+          <ul><li>Ada has 6 h in W2, minus the meeting = <b>5 h</b> of tasks. Team total = <b>142 h</b>, not 158.</li>
+            <li>Nothing planned after the <b>Thursday 25 March 18:00</b> code freeze?</li>
+            <li>CR-14 (out of scope) didn't sneak in?</li>
+            <li>Every pull request has a reviewer who isn't the author?</li></ul>
+          <div class="block prompt"><div class="bh">Plan mode, if something's off</div><pre>Ada's W2 tasks add up to X h but she has 5 h after the meeting. Fix the capacity table and move work so nobody exceeds capacity. Show only the changed rows.</pre></div></div></li>
+        <li class="step" data-id="s6-3"><div class="head"><input type="checkbox" id="c-s6-3"><span class="num"></span><label for="c-s6-3">Timeline in chat</label><span class="dur">2 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Plan mode</div><pre>Draw a Mermaid gantt chart of this plan: dateFormat YYYY-MM-DD, starting 2027-03-01, one section per backlog item, a milestone for the demo on 2027-03-26.</pre></div>
+          <p>Doesn't render? Ask: <code>Use a Mermaid flowchart LR with one node per week instead.</code></p></div></li>
+        <li class="step" data-id="s6-4"><div class="head"><input type="checkbox" id="c-s6-4"><span class="num"></span><label for="c-s6-4">Change request: break the plan</label><span class="dur">2 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Plan mode</div><pre>Change: Mert is sick for all of W3 and can only do 4 hours that week. Re-plan W3 and W4. Keep the must-ship items and the demo date. Say explicitly what you dropped or moved and why. Show only what changed and the new capacity table.</pre></div>
+          <div class="check">Did Bob drop a nice-to-have, like dark theme, rather than a must-ship item? Are all numbers still under capacity?</div>
+          <div class="stop">Steps 1, 2 and 4 are the core.</div></div></li>
+        <li class="step" data-id="s6-5"><div class="head"><input type="checkbox" id="c-s6-5"><span class="num"></span><label for="c-s6-5">Save the plan</label><span class="dur">1 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Plan mode</div><pre>Save the final plan (phases, task table, capacity table, gantt code block, change log) to scenarios/s6-project-plan/plans/sprint-plan.md.</pre></div></div></li>
+      </ol>
+    </section>
+
+    <!-- ============================== S7 -->
+    <section class="part scen" id="s7" data-sec="s7">
+      <header><span class="kicker">Scenario 7 · Career</span><h2>CV review or an interview take-home</h2>
+        <p class="lede">Bob can sharpen your CV or quietly make it dishonest. Catch it adding experience you don't have, and use it for hints, not answers. <b>Pick one path</b>; both don't fit in 10 minutes.</p>
+        <div class="meta"><span><b>Path A</b> CV, no coding</span><span><b>Path B</b> interview, Python</span><span><b>Bob</b> @ .docx, Ask vs Agent, approvals, tests</span><span><b>CV</b> Deniz Aydin, entirely synthetic</span></div></header>
+      <div class="warn">Using your own CV? First delete phone, home address, date of birth, ID numbers and photo. The synthetic CV includes some of these on purpose. Did Bob tell you to remove them?</div>
+      <h3>Path A · CV</h3>
+      <ol class="steps">
+        <li class="step" data-id="s7-a1"><div class="head"><input type="checkbox" id="c-s7-a1"><span class="num"></span><label for="c-s7-a1"><span class="mode ask"><span>Ask</span></span> Gap analysis against the posting</label><span class="dur">3 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode</div><pre>@/scenarios/s7-career-and-interview/cv.docx @/scenarios/s7-career-and-interview/job-posting.md
+Act as a recruiter for this posting. 1) For each "Must have", is there evidence in the CV? Quote it or say "no evidence". 2) The 5 weakest lines in the CV and why. 3) Anything that should not be on a CV at all. Do not rewrite the CV yet.</pre></div>
+          <div class="check">The posting requires automated tests. Is there any evidence of testing in the CV? Did Bob notice Kubernetes and TensorFlow in the skills list with no project behind them?</div></div></li>
+        <li class="step" data-id="s7-a2"><div class="head"><input type="checkbox" id="c-s7-a2"><span class="num"></span><label for="c-s7-a2"><span class="mode agent"><span>Agent</span></span> Improved CV in a new file, no invented facts</label><span class="dur">4 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Agent mode</div><pre>Write an improved version of @/scenarios/s7-career-and-interview/cv.md to scenarios/s7-career-and-interview/out/cv-improved.md. Rules:
+- Do NOT add any experience, skill, number or achievement that is not in the original. Where a metric would help, insert a placeholder like [ADD: how many bugs fixed?] for me to fill in honestly.
+- Rewrite bullets as action + what + result. Cut the generic summary to 2 lines aimed at this posting.
+- Remove personal data a CV should not contain. Trim the skills list to what the CV supports.
+- Do not modify cv.docx or cv.md.
+At the end list every change in a table: original | new | reason.</pre></div>
+          <p>Approve only the write to <code>out/cv-improved.md</code>.</p></div></li>
+        <li class="step" data-id="s7-a3"><div class="head"><input type="checkbox" id="c-s7-a3"><span class="num"></span><label for="c-s7-a3"><span class="mode ask"><span>Ask</span></span> Fabrication audit</label><span class="dur">3 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode</div><pre>@/scenarios/s7-career-and-interview/cv.md @/scenarios/s7-career-and-interview/out/cv-improved.md
+List every statement in the improved CV that is not directly supported by the original. Be strict: rewordings that make a claim stronger count.</pre></div>
+          <div class="check">"Wrote some Python scripts" becoming "Automated deployment pipelines" is fabrication, even if it sounds good.</div></div></li>
+      </ol>
+      <h3>Path B · Interview</h3>
+      <ol class="steps">
+        <li class="step" data-id="s7-b1"><div class="head"><input type="checkbox" id="c-s7-b1"><span class="num"></span><label for="c-s7-b1"><span class="mode ask"><span>Ask</span></span> Case-study questions</label><span class="dur">2 min</span></div>
+          <div class="body"><div class="block prompt"><div class="bh">Ask mode</div><pre>@/scenarios/s7-career-and-interview/job-posting.md @/app/README.md
+You are interviewing me for this role. Give me 3 short case-study questions about the CampusRoute codebase (e.g. "a student says the route through the library is wrong, how do you debug it?"). Ask them one at a time and wait for my answer before giving feedback.</pre></div>
+          <p>Answer at least one in your own words, then ask for feedback against the posting's "Must have" list.</p></div></li>
+        <li class="step" data-id="s7-b2"><div class="head"><input type="checkbox" id="c-s7-b2"><span class="num"></span><label for="c-s7-b2">Read the take-home and watch the tests fail</label><span class="dur">1 min</span></div>
+          <div class="body"><p>Read <code>scenarios/s7-career-and-interview/challenge/README.md</code>: implement <code>is_open(hours, now)</code> for strings like <code>Mon-Fri 08:00-24:00; Sat 10:00-18:00</code>.</p>
+          <div class="block term"><div class="bh">Terminal, from bobathon</div><pre data-cmd>cd scenarios/s7-career-and-interview/challenge
+python3 -m unittest test_opening_hours -v</pre></div>
+          <div class="block out"><div class="bh">At the start</div><pre>FAILED (errors=14)</pre></div></div></li>
+        <li class="step" data-id="s7-b3"><div class="head"><input type="checkbox" id="c-s7-b3"><span class="num"></span><label for="c-s7-b3">Solve it yourself, with Bob as a coach</label><span class="dur">rest of time</span></div>
+          <div class="body"><p>Write the code yourself in <code>challenge/opening_hours.py</code>. When stuck:</p>
+          <div class="block prompt"><div class="bh">Ask mode</div><pre>@/scenarios/s7-career-and-interview/challenge/README.md @/scenarios/s7-career-and-interview/challenge/opening_hours.py
+I'm stuck on &lt;your problem, e.g. the overnight interval "Fri 20:00-02:00"&gt;. Give me a hint in at most 3 sentences. Do not write code for me.</pre></div>
+          <div class="block prompt"><div class="bh">Agent mode, only to run tests</div><pre>Run: cd scenarios/s7-career-and-interview/challenge &amp;&amp; python3 -m unittest test_opening_hours -v
+Do not modify any file. Tell me which tests fail and what concept each one is about (not how to fix it).</pre></div>
+          <div class="check">When all 14 pass, explain your solution aloud in 60 seconds without Bob. That's the real interview.</div></div></li>
+      </ol>
+    </section>
+
+      </div>
+    </details>
+
+    <!-- ============================== SHARE -->
+    <section class="part" id="share" data-sec="share">
+      <header><span class="kicker">Part 5 · last 4 minutes</span><h2>Show and tell</h2>
+        <p class="lede">Two or three people share. The best demo is the moment you caught Bob being wrong.</p></header>
+      <ol class="steps">
+        <li class="step" data-id="share-1"><div class="head"><input type="checkbox" id="c-share-1"><span class="num"></span><label for="c-share-1">Write down one thing Bob got wrong that you caught</label><span class="dur">1 min</span></div>
+          <div class="body"><p>A wrong line number, an invented CV claim, a test it tried to change, a wrong complexity. The facilitator will collect these.</p></div></li>
+        <li class="step" data-id="share-2"><div class="head"><input type="checkbox" id="c-share-2"><span class="num"></span><label for="c-share-2">Have one artifact ready to show</label><span class="dur">1 min</span></div>
+          <div class="body"><ul><li>S1 study page or S6 gantt chart on screen</li><li>S3 or S4: the green test run, plus one approval card you rejected</li><li>S5: your 3-sentence note before and after Bob's correction</li></ul></div></li>
+      </ol>
+    </section>
+
+    <!-- ============================== RULES -->
+    <section class="part" id="rules">
+      <header><span class="kicker">Part 6 · always</span><h2>Rules: safety, privacy, integrity</h2></header>
+      <div class="tw"><table>
+        <tr><th>Rule</th><th>Why</th></tr>
+        <tr><td>Keep auto-approve off; read every approval card</td><td>The agent writes files and runs commands on your laptop</td></tr>
+        <tr><td>Never approve <code>sudo</code>, <code>rm -rf</code>, <code>curl … | sh</code>, <code>pip install</code> or <code>npm install</code> here</td><td>Nothing in this workshop needs them</td></tr>
+        <tr><td>No <code>eval</code>, <code>exec</code> or <code>subprocess</code> in interpreters</td><td>Input must never become code</td></tr>
+        <tr><td>Servers on <code>127.0.0.1</code> only</td><td>Don't expose your laptop to the venue Wi-Fi</td></tr>
+        <tr><td>No API keys or passwords in prompts or files</td><td>Prompts and files can be logged</td></tr>
+        <tr><td>Everyone in this workspace is synthetic. Strip personal data from your own CV first</td><td>Personal data protection</td></tr>
+        <tr><td>Don't paste classmates' work or real student data</td><td>Consent and law</td></tr>
+        <tr><td>Submitting Bob's work as your own coursework is cheating</td><td>Follow your course's AI policy</td></tr>
+      </table></div>
+    </section>
+
+    <!-- ============================== AFTER -->
+    <section class="part" id="after">
+      <header><span class="kicker">Part 7 · on your own</span><h2>After the workshop</h2>
+        <p class="lede">The workspace is yours. Keep going.</p></header>
+      <div class="tw"><table>
+        <tr><th>Next step</th><th>How</th></tr>
+        <tr><td>Finish your second scenario's bonus</td><td>Every scenario above has a bonus step</td></tr>
+        <tr><td>Ship a backlog item end to end</td><td>CR-11 "Open now?" or CR-15 dark theme in <code>app/docs/BACKLOG.md</code>: Plan mode, new task, Agent, tests green, then explain it</td></tr>
+        <tr><td>Build your own skill</td><td>Something you repeat weekly: lab reports, flashcards, commit messages. <code>.bob/skills/&lt;name&gt;/SKILL.md</code></td></tr>
+        <tr><td>Make a read-only study-buddy mode</td><td>Like the Assignment Grader in <code>.bob/custom_modes.yaml</code>, with <code>groups: [read]</code></td></tr>
+      </table></div>
+    </section>
+
+    <!-- ============================== HELP -->
+    <section class="part" id="help">
+      <header><span class="kicker">Part 8 · reference</span><h2>Troubleshooting</h2></header>
+      <div class="tw"><table>
+        <tr><th>Symptom</th><th>Fix</th></tr>
+        <tr><td>Bob can't find <code>@/app/…</code></td><td>Wrong folder. The workspace root must be <code>bobathon</code></td></tr>
+        <tr><td>Agent doesn't write the file</td><td>Check the selector says Agent; check for a waiting approval card</td></tr>
+        <tr><td>Too many approval cards</td><td>Normal. In Permissions allow <b>read</b> and <b>edit</b> for this task only. Never auto-allow <b>execute</b></td></tr>
+        <tr><td>Mermaid error in chat</td><td><code>Rewrite as a simple flowchart TD with every label in double quotes.</code></td></tr>
+        <tr><td><code>python3: command not found</code></td><td>Windows: use <code>py</code> (switch the top bar to Windows). Otherwise ask the facilitator</td></tr>
+        <tr><td><code>ModuleNotFoundError: campusroute</code></td><td>Run app commands from inside <code>app/</code></td></tr>
+        <tr><td>Port 8000 busy</td><td><code>python3 -m campusroute serve --port 8010</code></td></tr>
+        <tr><td>Literate coding shortcut does nothing</td><td>Click the magic-wand icon; some Bob versions use <kbd data-key>Cmd</kbd> + <kbd>M</kbd></td></tr>
+        <tr><td>Bob is slow</td><td>Shorter prompts, fewer @ files, new chat. The core steps are enough</td></tr>
+        <tr><td>Bob invents line numbers or facts</td><td>Expected sometimes. Ask it to quote the exact line, then check</td></tr>
+        <tr><td>You changed an input file by mistake</td><td>Restore it with <code>git checkout -- &lt;file&gt;</code>, or ask the facilitator</td></tr>
+      </table></div>
+    </section>
+
+    <footer>IBM Bob · Agentic AI in Action. CampusRoute and all people in it are synthetic. Prompts follow the IBM Bob documentation; button labels in your Bob version may differ slightly, and what you see on screen wins.</footer>
+   </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "bobathon-guide-v1";
+  var state = { done: {}, picks: [], os: "mac" };
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || "null"); if (saved && typeof saved === "object") state = Object.assign(state, saved); } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var steps = Array.prototype.slice.call(document.querySelectorAll("li.step"));
+
+  /* ---- copy buttons */
+  function copyText(text, btn) {
+    function ok() { btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(function () { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1600); }
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var worked = false; try { worked = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      if (worked) ok(); else { btn.textContent = "Select and copy"; }
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fallback);
+      else fallback();
+    } catch (e) { fallback(); }
+  }
+  document.querySelectorAll(".block.prompt, .block.term").forEach(function (block) {
+    var head = block.querySelector(".bh"), pre = block.querySelector("pre");
+    if (!head || !pre) return;
+    var b = document.createElement("button"); b.type = "button"; b.className = "copy"; b.textContent = "Copy";
+    b.setAttribute("aria-label", "Copy " + head.textContent.trim());
+    b.addEventListener("click", function () { copyText(pre.textContent, b); });
+    head.appendChild(b);
+  });
+
+  /* ---- OS switch: python3 -> py, Cmd -> Ctrl */
+  var cmdEls = Array.prototype.slice.call(document.querySelectorAll("[data-cmd]"));
+  cmdEls.forEach(function (el) { el.dataset.mac = el.textContent; });
+  var keyEls = Array.prototype.slice.call(document.querySelectorAll("kbd[data-key]"));
+  function applyOS() {
+    var win = state.os === "win";
+    cmdEls.forEach(function (el) { el.textContent = win ? el.dataset.mac.replace(/\bpython3\b/g, "py") : el.dataset.mac; });
+    keyEls.forEach(function (k) { k.textContent = win ? "Ctrl" : "Cmd"; });
+    document.querySelectorAll(".win-only").forEach(function (el) { el.hidden = !win; });
+    document.getElementById("os-mac").setAttribute("aria-pressed", String(!win));
+    document.getElementById("os-win").setAttribute("aria-pressed", String(win));
+  }
+  document.getElementById("os-mac").addEventListener("click", function () { state.os = "mac"; save(); applyOS(); });
+  document.getElementById("os-win").addEventListener("click", function () { state.os = "win"; save(); applyOS(); });
+
+  /* ---- step checkboxes + progress */
+  function visibleSteps() { return steps.filter(function (li) { var s = li.closest("section.scen"); return !s || state.picks.length === 0 || state.picks.indexOf(s.id) !== -1; }); }
+  function render() {
+    steps.forEach(function (li) { var id = li.dataset.id, cb = li.querySelector("input[type=checkbox]"); var d = !!state.done[id]; cb.checked = d; li.classList.toggle("done", d); });
+    var vis = visibleSteps(), n = vis.filter(function (li) { return state.done[li.dataset.id]; }).length;
+    document.getElementById("ptext").textContent = n + " of " + vis.length + " steps";
+    document.getElementById("pfill").style.width = (vis.length ? (100 * n / vis.length) : 0) + "%";
+    document.querySelectorAll(".toc .count").forEach(function (c) {
+      var sec = document.querySelector('[data-sec="' + c.dataset.for + '"]'); if (!sec) return;
+      var ls = sec.querySelectorAll("li.step"), dn = 0;
+      ls.forEach(function (li) { if (state.done[li.dataset.id]) dn++; });
+      c.textContent = dn + "/" + ls.length; c.classList.toggle("done", ls.length > 0 && dn === ls.length);
+    });
+  }
+  steps.forEach(function (li) {
+    li.querySelector("input[type=checkbox]").addEventListener("change", function (e) {
+      if (e.target.checked) state.done[li.dataset.id] = true; else delete state.done[li.dataset.id];
+      save(); render();
+    });
+  });
+
+  /* ---- scenario picker */
+  var pool = document.getElementById("pool"), chosen = document.getElementById("chosen");
+  var others = document.getElementById("others"), othersSum = document.getElementById("others-sum");
+  var order = ["s1", "s2", "s3", "s4", "s5", "s6", "s7"];
+  var risk = { s3: "High", s4: "High", s7: "High" };
+  function arrange() {
+    order.forEach(function (id) {
+      var sec = document.getElementById(id);
+      if (state.picks.indexOf(id) !== -1) chosen.appendChild(sec); else pool.appendChild(sec);
+    });
+    state.picks.forEach(function (id) { chosen.appendChild(document.getElementById(id)); });
+    var has = state.picks.length > 0;
+    othersSum.textContent = has ? "Other scenarios (" + (7 - state.picks.length) + ")" : "All scenarios";
+    if (has) others.open = false;
+    document.querySelectorAll(".toc a[data-scen]").forEach(function (a) { a.classList.toggle("chosen", state.picks.indexOf(a.dataset.scen) !== -1); });
+    document.querySelectorAll("#picker input").forEach(function (cb) {
+      var i = state.picks.indexOf(cb.value); cb.checked = i !== -1;
+      cb.closest(".pick").querySelector(".sel").textContent = i === -1 ? "" : (i === 0 ? "Your first scenario" : "Your second scenario");
+    });
+    var note = document.getElementById("pairnote");
+    var highs = state.picks.filter(function (p) { return risk[p]; }).length;
+    if (highs === 2) { note.textContent = "Both picks are high risk for a 30-minute session. Consider swapping one for 1, 5 or 6."; note.classList.add("bad"); }
+    else if (state.picks.length === 2) { note.textContent = "Good pair. Start a new chat for the first one and press Start 10 min."; note.classList.remove("bad"); }
+    else { note.textContent = "Not a programmer? 1 + 6. Early CS student? 5 + 1 or 5 + 2. Confident coder? 3 + 5 or 4 + 2. Job hunting? 7 + 6."; note.classList.remove("bad"); }
+    render();
+  }
+  document.querySelectorAll("#picker input").forEach(function (cb) {
+    cb.addEventListener("change", function () {
+      var i = state.picks.indexOf(cb.value);
+      if (cb.checked && i === -1) { state.picks.push(cb.value); if (state.picks.length > 2) state.picks.shift(); }
+      if (!cb.checked && i !== -1) state.picks.splice(i, 1);
+      save(); arrange();
+    });
+  });
+  document.querySelectorAll(".toc a[data-scen]").forEach(function (a) {
+    a.addEventListener("click", function () { if (state.picks.indexOf(a.dataset.scen) === -1) others.open = true; });
+  });
+
+  /* ---- timer */
+  var total = 600, left = total, tick = null, clock = document.getElementById("clock"), tbtn = document.getElementById("tstart");
+  function fmt(s) { var neg = s < 0; s = Math.abs(s); return (neg ? "-" : "") + Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+  function draw() { clock.textContent = fmt(left); clock.classList.toggle("over", left <= 0); }
+  tbtn.addEventListener("click", function () {
+    if (tick) { clearInterval(tick); tick = null; tbtn.textContent = "Resume"; return; }
+    tbtn.textContent = "Pause";
+    tick = setInterval(function () {
+      left--; draw();
+      if (left === 0) { clock.setAttribute("aria-live", "assertive"); clock.textContent = "0:00"; tbtn.textContent = "Time's up: wrap up the core step"; }
+    }, 1000);
+  });
+  document.getElementById("treset").addEventListener("click", function () { clearInterval(tick); tick = null; left = total; tbtn.textContent = "Start 10 min"; clock.setAttribute("aria-live", "off"); draw(); });
+
+  document.getElementById("resetall").addEventListener("click", function () {
+    var b = this;
+    if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Click again to clear everything"; setTimeout(function () { b.dataset.confirm = ""; b.textContent = "Clear my progress"; }, 4000); return; }
+    state = { done: {}, picks: [], os: state.os }; save(); b.dataset.confirm = ""; b.textContent = "Clear my progress"; arrange();
+  });
+
+  applyOS(); arrange(); draw();
+})();
+</script>
+</body>
+</html>
